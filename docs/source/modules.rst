@@ -6,6 +6,8 @@ src
 
    Morse
    MorseFast
+   UnitCell
    pairwise
-   unitcell
+   hydrostatic
+   shear
    util

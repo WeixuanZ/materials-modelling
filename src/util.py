@@ -1,4 +1,4 @@
-"""Help functions
+"""Helper functions
 """
 from typing import Union, Callable
 

@@ -1,7 +1,7 @@
-unitcell module
+UnitCell module
 ===============
 
-.. automodule:: unitcell
+.. automodule:: UnitCell
    :members:
    :undoc-members:
    :show-inheritance:
