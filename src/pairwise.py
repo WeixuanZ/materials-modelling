@@ -1,7 +1,4 @@
 """Calculations involving a pair of Cu atoms
-
-Attributes:
-    get_pair (Callable): closure of the pair of atoms
 """
 from typing import Union, Callable
 
@@ -10,11 +7,11 @@ from ase import Atoms
 from ase.units import Ang
 
 try:
-    from .Morse import MorsePotential
-    from .util import map_func
-except ImportError:
     from Morse import MorsePotential
     from util import map_func
+except ModuleNotFoundError:
+    from .Morse import MorsePotential
+    from .util import map_func
 
 
 def build_pair(d0: Union[float, int] = 1) -> Callable:

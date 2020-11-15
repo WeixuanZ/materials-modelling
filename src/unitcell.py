@@ -8,18 +8,18 @@ from ase import Atoms
 from ase.build import bulk
 
 try:
-    from .Morse import MorsePotential
-    from .util import map_func
-except ImportError:
     from Morse import MorsePotential
     from util import map_func
+except ModuleNotFoundError:
+    from .Morse import MorsePotential
+    from .util import map_func
 
 
 class CuCell:
     """A class for the cu unit cell, with methods for applying hydrostatic strain
 
     Attributes:
-        cu (Atoms): Description
+        cu (ase.Atoms): Description
     """
 
     def __init__(self, a: float = 3.6):
@@ -58,21 +58,11 @@ class CuCell:
             strain (float): the hydrostatic strain applied
 
         Returns:
-            Atoms: deformed unit cell
+            ase.Atoms: deformed unit cell
         """
         self.cu.set_cell(self.init_cell * (1 - strain), scale_atoms=True)
         return self.cu
 
-    def get_deformed_vol(self, strain: float) -> float:
-        """Calculate the new volume after applying the strain
-        
-        Args:
-            strain (float): strain
-        
-        Returns:
-            float: new volume (Å^3)
-        """
-        return self.init_vol * (1 - strain) ** 3
 
 
 cu_cell = CuCell()
@@ -114,16 +104,16 @@ def get_hydrostatic_stress(strain: float) -> np.ndarray:
     return cu_cell.get_deformed_cell(strain).get_stress(voigt=False)
 
 
-def calc_hydrostatic_pressure(stress: np.ndarray) -> float:
+def get_hydrostatic_pressure(strain: float) -> float:
     """Calculate the pressure from the stress matrix
 
     Args:
-        stress (np.ndarray): the stress matrix
+        strain (np.ndarray): strain
 
     Returns:
         float: hydrostatic pressure (eV/Å^3)
     """
-    return - 0.33 * np.trace(stress)
+    return - 0.33 * np.trace(get_hydrostatic_stress(strain))
 
 
 def get_hydrostatic_pressures(arr: np.ndarray) -> np.ndarray:
@@ -135,7 +125,19 @@ def get_hydrostatic_pressures(arr: np.ndarray) -> np.ndarray:
     Returns:
         np.ndarray: array of pressures (eV/Å^3)
     """
-    return map_func(lambda x: calc_hydrostatic_pressure(get_hydrostatic_stress(x)), arr)
+    return map_func(get_hydrostatic_pressure, arr)
+
+
+def get_hydrostatic_vol(strain: float) -> float:
+    """Calculate the new volume after applying the strain
+
+    Args:
+        strain (float): strain
+
+    Returns:
+        float: new volume (Å^3)
+    """
+    return cu_cell.init_vol * (1 - strain) ** 3
 
 
 def get_hydrostatic_vols(arr: np.ndarray) -> np.ndarray:
@@ -147,4 +149,4 @@ def get_hydrostatic_vols(arr: np.ndarray) -> np.ndarray:
     Returns:
         np.ndarray: array of volumes (sÅ^3)
     """
-    return map_func(cu_cell.get_deformed_vol, arr)
+    return map_func(get_hydrostatic_vol, arr)
