@@ -16,7 +16,6 @@ except ImportError:
 
 
 class CuCell:
-
     """A class for the cu unit cell, with methods for applying hydrostatic strain
 
     Attributes:
@@ -73,7 +72,7 @@ class CuCell:
         Returns:
             float: new volume (Å^3)
         """
-        return self.init_vol * strain**3
+        return self.init_vol * (1 - strain) ** 3
 
 
 cu_cell = CuCell()
@@ -103,7 +102,7 @@ def get_hydrostatic_pes(arr: np.ndarray) -> np.ndarray:
     return map_func(get_hydrostatic_pe, arr)
 
 
-def get_hydrostatic_stress(strain: float) -> float:
+def get_hydrostatic_stress(strain: float) -> np.ndarray:
     """Calculate the stress after applying a hydrostatic strain
 
     Args:
@@ -112,11 +111,23 @@ def get_hydrostatic_stress(strain: float) -> float:
     Returns:
         float: pressure (eV/Å^3)
     """
-    return cu_cell.get_deformed_cell(strain).get_stress(voigt=False)[0, 0]
+    return cu_cell.get_deformed_cell(strain).get_stress(voigt=False)
 
 
-def get_hydrostatic_stresses(arr: np.ndarray) -> np.ndarray:
-    """Apply the stress calculation to an array of strains
+def calc_hydrostatic_pressure(stress: np.ndarray) -> float:
+    """Calculate the pressure from the stress matrix
+
+    Args:
+        stress (np.ndarray): the stress matrix
+
+    Returns:
+        float: hydrostatic pressure (eV/Å^3)
+    """
+    return - 0.33 * np.trace(stress)
+
+
+def get_hydrostatic_pressures(arr: np.ndarray) -> np.ndarray:
+    """Apply the pressure calculation to an array of strains
 
     Args:
         arr (np.ndarray): array of strains
@@ -124,7 +135,7 @@ def get_hydrostatic_stresses(arr: np.ndarray) -> np.ndarray:
     Returns:
         np.ndarray: array of pressures (eV/Å^3)
     """
-    return map_func(get_hydrostatic_stress, arr)
+    return map_func(lambda x: calc_hydrostatic_pressure(get_hydrostatic_stress(x)), arr)
 
 
 def get_hydrostatic_vols(arr: np.ndarray) -> np.ndarray:
