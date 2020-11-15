@@ -1,21 +1,51 @@
 """Calculations involving a pair of Cu atoms
 
 Attributes:
-    a (ase.Atoms): object representing the atoms
-    calc (Morse.MorsePotential): calculator attached to the atoms
+    get_pair (Callable): closure of the pair of atoms
 """
-from typing import Union
+from typing import Union, Callable
 
 import numpy as np
 from ase import Atoms
 from ase.units import Ang
 
-from src.Morse import MorsePotential
-from src.util import map_func
+try:
+    from .Morse import MorsePotential
+    from .util import map_func
+except ImportError:
+    from Morse import MorsePotential
+    from util import map_func
 
-calc = MorsePotential()
-a = Atoms('2Cu', positions=[(0., 0., 0.), (0., 0., 1 * Ang)])
-a.set_calculator(calc)
+
+def build_pair(d0: Union[float, int] = 1) -> Callable:
+    """Closure to store the atoms object
+
+    Args:
+        d0 (Union[float, int], optional): default unit cell length
+
+    Returns:
+        Callable: function to apply strain
+    """
+    calc = MorsePotential()
+    a = Atoms('2Cu', positions=[(0., 0., 0.), (0., 0., d0 * Ang)])
+    a.set_calculator(calc)
+
+    def change_distance(d: Union[float, int]) -> Atoms:
+        """Function that returns the deformed unit cell under a given hydrostatic strain
+
+        Args:
+            d (Union[float, int]): distance (Å)
+
+        Returns:
+            Atoms: deformed atom pair
+        """
+        a.positions[1, 2] = d * Ang
+        return a
+
+    return change_distance
+
+
+get_pair = build_pair()  # set up the closure
 
 
 def get_pairwise_pe(d: Union[float, int]) -> float:
@@ -27,8 +57,7 @@ def get_pairwise_pe(d: Union[float, int]) -> float:
     Returns:
         float: potential energy (eV)
     """
-    a.positions[1, 2] = d * Ang
-    return a.get_potential_energy()
+    return get_pair(d).get_potential_energy()
 
 
 def get_pairwise_pes(arr: np.ndarray) -> np.ndarray:
@@ -52,8 +81,7 @@ def get_pairwise_force(d: Union[float, int]) -> float:
     Returns:
         float: force (eV/Å)
     """
-    a.positions[1, 2] = d * Ang
-    return a.get_forces()[1, 2]
+    return get_pair(d).get_forces()[1, 2]
 
 
 def get_pairwise_forces(arr: np.ndarray) -> np.ndarray:
