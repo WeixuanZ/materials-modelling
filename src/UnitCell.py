@@ -34,7 +34,7 @@ class CuCell:
         self._init_vol = self.cu.get_volume()
 
     @classmethod
-    def from_strain_to_default(cls, strain: float) -> CuCell:
+    def from_default_eq_strain(cls, strain: float) -> CuCell:
         """Create the class from strain (with respect to the default unit cell size)
 
         The is used to create a unit cell with size where the potential energy is minimum,
