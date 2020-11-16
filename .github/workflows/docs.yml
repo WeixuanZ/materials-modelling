@@ -32,6 +32,9 @@ jobs:
         name: Documentation
         path: docs/build/latex/materials-modelling.pdf
 
+    - run: sudo touch docs/build/html/.nojekyll
+    - run: sudo mv docs/build/latex/materials-modelling.pdf docs/build/html/
+
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@3.7.1
       with:

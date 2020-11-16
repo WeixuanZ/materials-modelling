@@ -105,13 +105,13 @@ class CuCell:
         self.cu.set_cell(new_cell)
         return self.cu
 
-    def strain_deform(self, strain_x, strain_y, strain_z) -> Atoms:
+    def strain_deform(self, strain_x: float, strain_y: float, strain_z: float) -> Atoms:
         """Function that returns the deformed unit cell under normal strains
 
         Args:
-            strain_x (TYPE): strain in the x direction
-            strain_y (TYPE): strain in the y direction
-            strain_z (TYPE): strain in the z direction
+            strain_x (float): strain in the x direction
+            strain_y (float): strain in the y direction
+            strain_z (float): strain in the z direction
 
         Returns:
             ase.Atoms: deformed unit cell
