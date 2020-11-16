@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pairwise module &mdash; Materials Modelling  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="hydrostatic module" href="hydrostatic.html" />
+    <link rel="prev" title="UnitCell module" href="UnitCell.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Materials Modelling
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Morse.html">Morse module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MorseFast.html">MorseFast module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="UnitCell.html">UnitCell module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pairwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostatic.html">hydrostatic module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shear.html">shear module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">util module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Materials Modelling</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">&lt;no title&gt;</a> &raquo;</li>
+        
+      <li>pairwise module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/pairwise.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pairwise">
+<span id="pairwise-module"></span><h1>pairwise module<a class="headerlink" href="#module-pairwise" title="Permalink to this headline">¶</a></h1>
+<p>Calculations involving a pair of Cu atoms</p>
+<dl class="py function">
+<dt id="pairwise.build_pair">
+<code class="sig-prename descclassname">pairwise.</code><code class="sig-name descname">build_pair</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">d0</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>int<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span> &#x2192; Callable<a class="headerlink" href="#pairwise.build_pair" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closure to store the atoms object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>d0</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>int</em><em>]</em><em>, </em><em>optional</em>) – default unit cell length</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>function to apply strain</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Callable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pairwise.get_pair">
+<code class="sig-prename descclassname">pairwise.</code><code class="sig-name descname">get_pair</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">d</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>int<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; ase.atoms.Atoms<a class="headerlink" href="#pairwise.get_pair" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that returns the deformed unit cell under a given hydrostatic strain</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>d</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>int</em><em>]</em>) – distance (Å)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>deformed atom pair</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Atoms</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pairwise.get_pairwise_force">
+<code class="sig-prename descclassname">pairwise.</code><code class="sig-name descname">get_pairwise_force</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">d</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>int<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#pairwise.get_pairwise_force" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the force between two atoms separated by the given distance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>d</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>int</em><em>]</em>) – distance (Å)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>force (eV/Å)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pairwise.get_pairwise_forces">
+<code class="sig-prename descclassname">pairwise.</code><code class="sig-name descname">get_pairwise_forces</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arr</span><span class="p">:</span> <span class="n">numpy.ndarray</span></em><span class="sig-paren">)</span> &#x2192; numpy.ndarray<a class="headerlink" href="#pairwise.get_pairwise_forces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply pairwise force calculation to an array of distances</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>arr</strong> (<em>np.ndarray</em>) – array of distances (Å)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array of forces (eV/Å)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pairwise.get_pairwise_pe">
+<code class="sig-prename descclassname">pairwise.</code><code class="sig-name descname">get_pairwise_pe</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">d</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>float<span class="p">, </span>int<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#pairwise.get_pairwise_pe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the potential energy of two atoms separated by the given distance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>d</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>int</em><em>]</em>) – distance (Å)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>potential energy (eV)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pairwise.get_pairwise_pes">
+<code class="sig-prename descclassname">pairwise.</code><code class="sig-name descname">get_pairwise_pes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arr</span><span class="p">:</span> <span class="n">numpy.ndarray</span></em><span class="sig-paren">)</span> &#x2192; numpy.ndarray<a class="headerlink" href="#pairwise.get_pairwise_pes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply pairwise potential energy calculation to an array of distances</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>arr</strong> (<em>np.ndarray</em>) – array of distances (Å)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>array of potential energies (eV)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="hydrostatic.html" class="btn btn-neutral float-right" title="hydrostatic module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="UnitCell.html" class="btn btn-neutral float-left" title="UnitCell module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Weixuan Zhang
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

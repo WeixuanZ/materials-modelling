@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>UnitCell module &mdash; Materials Modelling  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="pairwise module" href="pairwise.html" />
+    <link rel="prev" title="MorseFast module" href="MorseFast.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Materials Modelling
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Morse.html">Morse module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MorseFast.html">MorseFast module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">UnitCell module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pairwise.html">pairwise module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hydrostatic.html">hydrostatic module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="shear.html">shear module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="util.html">util module</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Materials Modelling</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">&lt;no title&gt;</a> &raquo;</li>
+        
+      <li>UnitCell module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/UnitCell.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-UnitCell">
+<span id="unitcell-module"></span><h1>UnitCell module<a class="headerlink" href="#module-UnitCell" title="Permalink to this headline">¶</a></h1>
+<p>Calculations on a unit cell</p>
+<dl class="py class">
+<dt id="UnitCell.CuCell">
+<em class="property">class </em><code class="sig-prename descclassname">UnitCell.</code><code class="sig-name descname">CuCell</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">3.6</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnitCell.CuCell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class for the Cu unit cell, with methods for applying strain and shear</p>
+<dl class="py attribute">
+<dt id="UnitCell.CuCell.cu">
+<code class="sig-name descname">cu</code><a class="headerlink" href="#UnitCell.CuCell.cu" title="Permalink to this definition">¶</a></dt>
+<dd><p>an object representing the atoms</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>ase.Atoms</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="UnitCell.CuCell.default_a">
+<code class="sig-name descname">default_a</code><a class="headerlink" href="#UnitCell.CuCell.default_a" title="Permalink to this definition">¶</a></dt>
+<dd><p>default unit cell size</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="id0">
+<code class="sig-name descname">default_a</code><em class="property"> = 3.6</em><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnitCell.CuCell.from_default_eq_strain">
+<em class="property">classmethod </em><code class="sig-name descname">from_default_eq_strain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">strain</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#UnitCell.CuCell" title="UnitCell.CuCell">UnitCell.CuCell</a><a class="headerlink" href="#UnitCell.CuCell.from_default_eq_strain" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the class from strain (with respect to the default unit cell size)</p>
+<p>The is used to create a unit cell with size where the potential energy is minimum,
+as calculated elsewhere.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>strain</strong> (<em>float</em>) – the strain</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>class created</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnitCell.CuCell" title="UnitCell.CuCell">CuCell</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="UnitCell.CuCell.hydrostatic_deform">
+<code class="sig-name descname">hydrostatic_deform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">strain</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span> &#x2192; ase.atoms.Atoms<a class="headerlink" href="#UnitCell.CuCell.hydrostatic_deform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that returns the deformed unit cell under a given hydrostatic strain</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>strain</strong> (<em>float</em>) – the hydrostatic strain applied</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>deformed unit cell</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ase.Atoms</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="UnitCell.CuCell.init_cell">
+<em class="property">property </em><code class="sig-name descname">init_cell</code><a class="headerlink" href="#UnitCell.CuCell.init_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get initial cell vectors</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>initial cell vectors (columns)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="UnitCell.CuCell.init_vol">
+<em class="property">property </em><code class="sig-name descname">init_vol</code><a class="headerlink" href="#UnitCell.CuCell.init_vol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get initial unit call volume</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>initial volume (Å^3)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="UnitCell.CuCell.set_cell_size">
+<code class="sig-name descname">set_cell_size</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#UnitCell.CuCell.set_cell_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the unit cell length</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>a</strong> (<em>float</em>) – the length of unit cell</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="UnitCell.CuCell.shear_deform">
+<code class="sig-name descname">shear_deform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">shear</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span> &#x2192; ase.atoms.Atoms<a class="headerlink" href="#UnitCell.CuCell.shear_deform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that returns the deformed unit cell under a shear in Y direction</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>shear</strong> (<em>float</em>) – shear in Y direction</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>deformed unit cell</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ase.Atoms</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="UnitCell.CuCell.strain_deform">
+<code class="sig-name descname">strain_deform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">strain_x</span></em>, <em class="sig-param"><span class="n">strain_y</span></em>, <em class="sig-param"><span class="n">strain_z</span></em><span class="sig-paren">)</span> &#x2192; ase.atoms.Atoms<a class="headerlink" href="#UnitCell.CuCell.strain_deform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function that returns the deformed unit cell under normal strains</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>strain_x</strong> (<em>TYPE</em>) – strain in the x direction</p></li>
+<li><p><strong>strain_y</strong> (<em>TYPE</em>) – strain in the y direction</p></li>
+<li><p><strong>strain_z</strong> (<em>TYPE</em>) – strain in the z direction</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>deformed unit cell</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ase.Atoms</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="UnitCell.CuCell.visualize">
+<code class="sig-name descname">visualize</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#UnitCell.CuCell.visualize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Visualize the unit cell</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pairwise.html" class="btn btn-neutral float-right" title="pairwise module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="MorseFast.html" class="btn btn-neutral float-left" title="MorseFast module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Weixuan Zhang
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
