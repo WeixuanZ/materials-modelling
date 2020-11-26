@@ -46,7 +46,7 @@ class CuCell:
         Returns:
             CuCell: class created
         """
-        return cls(CuCell.default_a * (1 - strain))
+        return cls(CuCell.default_a * (1 + strain))
 
     @property
     def init_cell(self) -> np.ndarray:
@@ -71,13 +71,13 @@ class CuCell:
         """
         view(self.cu)
 
-    def set_cell_size(self, a: float) -> None:
+    def set_cell(self, cell: np.ndarray) -> None:
         """Set the unit cell length
 
         Args:
-            a (float): the length of unit cell
+            cell (float): the new unit cell
         """
-        self.cu.set_cell(a, scale_atoms=True)
+        self.cu.set_cell(cell, scale_atoms=True)
 
     def hydrostatic_deform(self, strain: float) -> Atoms:
         """Function that returns the deformed unit cell under a given hydrostatic strain
@@ -88,7 +88,7 @@ class CuCell:
         Returns:
             ase.Atoms: deformed unit cell
         """
-        self.set_cell_size(self.init_cell * (1 - strain))
+        self.set_cell(self.init_cell * (1 + strain))
         return self.cu
 
     def shear_deform(self, shear: float) -> Atoms:
@@ -102,7 +102,7 @@ class CuCell:
         """
         new_cell = self.init_cell
         new_cell[0, 1] = shear * new_cell[0, 0]
-        self.cu.set_cell(new_cell)
+        self.set_cell(new_cell)
         return self.cu
 
     def strain_deform(self, strain_x: float, strain_y: float, strain_z: float) -> Atoms:
@@ -119,5 +119,5 @@ class CuCell:
         strain = np.ones((3, 3))
         strain[np.diag_indices(3)] = np.array([strain_x, strain_y, strain_z]) + 1
         new_cell = self.init_cell * strain
-        self.cu.set_cell(new_cell)
+        self.set_cell(new_cell)
         return self.cu

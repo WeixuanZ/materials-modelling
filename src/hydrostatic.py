@@ -85,7 +85,7 @@ def get_hydrostatic_vol(strain: float) -> float:
     Returns:
         float: new volume (Å^3)
     """
-    return cu_cell.init_vol * (1 - strain) ** 3
+    return cu_cell.init_vol * (1 + strain) ** 3
 
 
 def get_hydrostatic_vols(arr: np.ndarray) -> np.ndarray:
