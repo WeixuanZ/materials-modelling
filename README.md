@@ -3,6 +3,8 @@
 Using Morse potential to investigate elastic properties of single crystal copper.
 Documentation is available at https://weixuanz.github.io/materials-modelling/.
 
+`src/Morse.py` and `src/MorseFast.py` are written by Prof. Gábor Csányi.
+
 ```python
 import numpy as np
 
@@ -22,7 +24,7 @@ from ase.units import GPa
 
 from src.hydrostatic import get_hydrostatic_pressure, get_hydrostatic_vol
 
-delta = 0.001
+delta = 1e-4
 
 K = - (
     get_hydrostatic_vol(eq_strain)
@@ -54,9 +56,9 @@ from src.UnitCell import CuCell
 
 cu_cell = CuCell.from_default_eq_strain(eq_strain)
 
-strain_x = 0.01
-strain_y_z = fsolve(lambda x: cu_cell.strain_deform(strain_x, x, x).get_stress(voigt=False)[1, 1], -strain_x)[0]
+strain_x = 0.05
+strain_y_z, = fsolve(lambda x: cu_cell.strain_deform(strain_x, x, x).get_stress(voigt=False)[1, 1], -strain_x)
 
-v = strain_y_z / strain_x
+v = -strain_y_z / strain_x
 print(v)
 ```
